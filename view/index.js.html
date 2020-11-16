@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>超长文字中间显示省略号</title>
+    <script src="../js/jquery-1.8.3.min.js"></script>
+    <script src="../js/jquery.dotdotdot.js"></script>
+    <style>
+        .path{
+            width: 320px;
+            height: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="path" style="overflow-wrap: break-word;">
+        www.website.com/with/a/long/pathname/a/long/pathname/a/long/pathname/file.html
+    </div>
+
+    <div class="path" style="overflow-wrap: break-word;">
+        www.website.com/with/a/long/pathname/a/long/pathname/a/long/pathname/file.html
+    </div>
+
+    <div class="path" style="overflow-wrap: break-word;">
+        www.website.com/with/a/long/pathname/a/long/pathname/a/long/pathname/file.html
+    </div>
+
+    <div class="path" style="overflow-wrap: break-word;">
+        www.website.com/with/a/long/pathname/a/long/pathname/a/long/pathname
+    </div>
+<script>
+    $(function () {
+        $('.path').each(function () {
+            var path = $(this).html().split('/');
+            if (path.length > 1) {
+                var name = path.pop();
+                $(this).html(path.join('/') + '<span class="filename">/' + name + '</span>');
+                $(this).dotdotdot({
+                    after: '.filename',
+                    wrap: 'letter'
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>
